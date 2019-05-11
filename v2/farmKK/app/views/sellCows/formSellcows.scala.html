@@ -1,0 +1,37 @@
+@(formSellcow:Form[SellCows],sellcowList:List[SellCows],listcow:List[Cows],listcoo:List[cooperatives])
+@import helper._;
+<html>
+    <head>
+        <title>
+            FormSellCow.
+        </title>
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-plus"></span>  ขายโคขุน
+                    </div>
+                    <div class="panel-body">
+
+                    @helper.form(action = routes.sellController.inputsellcows(), 'enctype -> "multipart/form-data") {
+                        @select(formSellcow("coo.id"),options=listcoo.map(fac=>fac.getId->fac.getName),'class->"form-control",'_label->"เลือกสหกรณ์")
+                        @inputText(formSellcow("id"),'_label -> "รหัสขาย",'class->"form-control")
+                        @inputText(formSellcow("sale_price"),'_label -> "ราคาตอนขาย",'class->"form-control")
+                        <p>
+                            <input type="submit" value="ยืนยัน" class="btn-primary" >
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+
+        }
+
+    </body>
+</html>

@@ -1,0 +1,38 @@
+@(basket:List[RecipBasket])
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <h2>ยืนยันการสั่งซื้อ</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <th width="10%">รหัส</th>
+            <th width="50%">ชื่อสินค้า</th>
+            <th width="10%">ราคา</th>
+            <th width="10%">จำนวน</th>
+            <th width="20%">เป็นเงิน</th>
+
+            @for(bask <- basket){
+                <tr>
+                    <td>@bask.getDate</td>
+                    <td>@bask.getDate</td>
+                    <td>@bask.getDate</td>
+                    <td>@bask.getDate</td>
+                    <td>@bask.getDate</td>
+                    <td>@bask.getDate</td>
+
+                    @*<td>@((basket.getProduct.getPrice)*( basket.getAmount))</td>*@
+
+                </tr>
+            }
+            </table>
+        <br>
+        <a href="/saves" class="btn btn-success"> ยืนยันการสั่งซื้อ</a>
+        <a href="/" class="btn btn-primary">เลือกสินค้าเพิ่ม</a>
+    </div>
+</div>
+<br><br>
+
+</div>

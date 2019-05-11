@@ -1,0 +1,99 @@
+@(myForm:Form[SaveFoods],recipe:Recipe,cowsList:List[Cows],listsavecow:List[SaveFoods],savefood:SaveFoods)
+@import helper._;
+@import java.math.BigInteger; var i=0;
+@import helper._;
+<html>
+    <head>
+        <title>
+            บันทึกการให้อาหารโคขุน
+        </title>
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><a href="/">หน้าหลัก</a></li>
+                    <li class="active">บันทึกการให้อาหารโคขุน</li>
+                </ol>
+        <center><h2>เลือกโคขุนเข้าไปยังสูตร</h2></center>
+        @*<center><h3>สูตร :@recipe.getNameRecip</h3></center>*@
+
+<br>
+                @if(flash.containsKey("data")){
+                    <div class="alert alert-danger">
+                        <strong>เกิดข้อผิดพลาด</strong> @flash.get("data")
+                    </div>
+                }
+
+                        <div    class="row">
+
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                @if(flash.containsKey("data")){
+                                    <div class="alert alert-danger">
+                                        <strong>เกิดข้อผิดพลาด&nbsp;</strong> @flash.get("data")
+                                    </div>
+                                }
+                                @if(flash.containsKey("datacow1")){
+                                    <div class="alert alert-danger">
+                                        <strong>เกิดข้อผิดพลาด&nbsp;</strong> @flash.get("datacow1")
+                                    </div>
+                                }
+                                @if(flash.containsKey("Errortoadd")){
+                                    <div class="alert alert-danger">
+                                        <strong>เกิดข้อผิดพลาด&nbsp;</strong> @flash.get("Errortoadd")
+                                    </div>
+                                }
+                            <table  >
+                                <tr class="info">
+                                    <th width="500">เลือกโคขุน</th>
+                                    <th width="100">สายพันธุ์</th>
+                                    <th >อายุ</th>
+                                </tr>
+                                <form action="/inputsavefood" method="post">
+                                    @for(learn <- cowsList) {
+                                <tr>
+
+                                    <td width="">
+                                        <input type="hidden" name="id[@i]" value="@learn.getCow_id">
+
+                                    </td>
+                                    <td>
+                                        <input type="hidden" name="idc" value="@recipe.getNameRecip">
+                                    </td>
+                                </tr>
+
+                                        <tr>
+                                        @if(learn.getEat_recip!=null){
+
+
+                                    }else{
+                                                <td>  <input type="checkbox" name="learnId[@i]" value="1"> &nbsp; @learn.getCow_id
+
+                                                    @learn.getEat_recip
+                                                </td>
+
+                                                <td> @learn.getBreed.getName<br></td>
+            <td> @learn.getAge<br></td>
+
+                                        }
+                                        </tr>
+                                    @(i=i+1)
+                                }
+
+                                    <tr>
+                                        <td rowspan="4" align="center">
+                                            <input type="submit" value="บันทึก" class="btn btn-success" >
+                                        </td>
+                                    </tr>
+
+                            </form>
+                            </table>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                    </div>
+                </div>
+
+    </body>
+</html>

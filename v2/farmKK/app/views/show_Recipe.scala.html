@@ -1,0 +1,220 @@
+@(myList:List[Recipe],myForm:Form[Recipe],myListFoods:List[Inputfood])
+@import helper._;
+@import java.math.BigInteger; var i=0;
+<html>
+    <head>
+        <title>
+            อาหารโคขุน
+        </title>
+        <link href="/assets/images/cow.png" type="image/png" rel="icon">
+        <link href="/assets/stylesheets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+        <!---->
+        <div class="row">
+            @if(flash.containsKey("chk")){
+                <div class="alert alert-danger">
+                    <strong>เกิดข้อผิดพลาด</strong> @flash.get("chk")
+                </div>
+            }
+
+
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                <h2>สูตรอาหารโคขุน</h2>
+                <p style="color: red;">**เป็นขั้นตอนการดูสูตร รายละเอียตรสูตรต่างๆของอาหารโคขุน</p>
+<div class="row">
+    <form action="/inputRecipe" method="post">
+
+    <div class="col-md-5">
+        <table width="100%">
+            <tr>
+                <th>ชื่อสูตร</th>  <td><input type="text" name="rid" class="form-control"></td>
+            </tr>
+         <tr>
+             <th>จำนวนโคขุนที่ต้องใช้สูตร</th><td><input type="text" name="amount" class="form-control"></td>
+            </tr>
+         <tr>
+             <th>ช่วงเวลาใช้สูตร</th>
+             <td>
+                 <input type="radio" name="rdio" value="ช่วงเวลา 1-6 เดือนแรก">ช่วงเวลา 1-6 เดือนแรก<br>
+                 <input type="radio" name="rdio" value="ช่วงเวลา 6-12 เดือนแรก">ช่วงเวลา 6-12 เดือนแรก
+             </td>
+              <tr>
+             <th></th>
+             <td>
+
+
+                 <select name="rdiomount">
+                 <option name="rdiomount" value="มากราคม">มากราคม</option>
+                 <option name="rdiomount" value="กุมพาพันธุ์">กุมพาพันธุ์</option>
+                 <option name="rdiomount" value="มีนาคม">มีนาคม</option>
+                 <option name="rdiomount" value="เมษายน">เมษายน</option>
+                 <option name="rdiomount" value="พฤษภาคม">พฤษภาคม</option>
+                 <option name="rdiomount" value="มิถุนายน">มิถุนายน</option>
+                 <option name="rdiomount" value="กรกฎาคม">กรกฎาคม</option>
+                 <option name="rdiomount" value="สิงหาคม">สิงหาคม</option>
+                 <option name="rdiomount"  value="กันยายน">กันยายน</option>
+                 <option name="rdiomount" value="ตุลาคม">ตุลาคม</option>
+                 <option name="rdiomount" value="พฤษจิกายน">พฤษจิกายน</option>
+                 <option name="rdiomount" value="ธันวาคม">ธันวาคม</option>
+             </select> -        <select name="rdiomount1">
+                 <option name="rdiomount1" value="มากราคม">มากราคม</option>
+                 <option name="rdiomount1" value="กุมพาพันธุ์">กุมพาพันธุ์</option>
+                 <option name="rdiomount1" value="มีนาคม">มีนาคม</option>
+                 <option name="rdiomount1" value="เมษายน">เมษายน</option>
+                 <option name="rdiomount1" value="พฤษภาคม">พฤษภาคม</option>
+                 <option name="rdiomount1" value="มิถุนายน">มิถุนายน</option>
+                 <option name="rdiomount1" value="กรกฎาคม">กรกฎาคม</option>
+                 <option name="rdiomount1" value="สิงหาคม">สิงหาคม</option>
+                 <option name="rdiomount1" value="กันยายน">กันยายน</option>
+                 <option name="rdiomount1" value="ตุลาคม">ตุลาคม</option>
+                 <option name="rdiomount1" value="พฤษจิกายน">พฤษจิกายน</option>
+                 <option name="rdiomount1" value="ธันวาคม">ธันวาคม</option>
+             </select>
+             </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="col-md-7">
+
+
+
+    @for(s<-myListFoods){
+        <input type="hidden" name="id[@i]" value="@s.getId_ifoods">
+        <table width="90%">
+            <tr>
+
+
+                <td >
+                    @*<input type="checkbox"  name="" value="1">*@
+                     @s.getFood.getAnimalfoods_type()
+                </td>
+                <td WIDTH="500">
+                    <input type="text" name="chk[@i]" placeholder="หน่วย : กิโลกรัม" class="form-control">
+                </td>
+            </tr>
+        </table>
+
+
+        @(i=i+1)
+        <br>
+        }
+            <br>
+            <input type="submit" value="จัดสูตร">
+            <input type="reset" value="reset">
+
+</div>
+    </form>
+
+
+
+
+
+</div></div></div></div>
+
+        <!--หน้าโชว-->
+        <div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-success">
+            <div class="panel-heading"><span class="glyphicon glyphicon-eye-open"> สูตรอาหาร</span> </div>
+            <div class="panel-body">
+                @if(flash.containsKey("more")){
+                    <div class="alert alert-danger">
+                        <strong>เกิดข้อผิดพลาด </strong>&nbsp;flash.get("more").
+                    </div>
+                }
+
+<table class="table">
+    <tr>
+
+        <th>ชื่อสูตร</th>
+
+        <th>รายละเอียดสูตร</th>
+        <th>&nbsp;</th>
+        <th>ช่วงเวลาให้</th>
+        <th>วันที่จัดสูตร</th>
+
+    </tr>
+@for(recip<-myList) {
+
+    <tr>
+        <td>
+            @recip.getNameRecip;
+        </td>
+
+
+        <td>
+        @for(dataa <- recip.getDrecipList){
+            @if(dataa.getAmount==0){
+
+            }else{
+
+                 @dataa.getInputfoods.getFood.getAnimalfoods_type &nbsp;
+                <b> จำนวน :</b> @dataa.getAmount Kg. <br>
+
+
+
+            }
+
+        }
+        </td>
+        <td>@recip.getDateTimeRecipe</td>
+<td>@recip.getMount - @recip.getMount1</td>
+        <td>@recip.getDateRecipe</td>
+        <td>
+
+            <a href="/deleteRecipe/@recip.getNameRecip" onclick="return confirm('Delete')">
+                <button class="btn btn-danger">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </a>
+        </td>
+        <td>
+            <table class="table">
+
+                @for(ss <- recip.getDrecipList){
+                <tr>
+                    <td>
+
+                    </td>
+                </tr>
+
+                }
+            </table>
+        </td>
+
+    </tr>
+
+}
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+    </div>
+</div>
+     <!--\\-->
+
+        </div>
+        </div>
+
+
+
+    </body>
+</html>

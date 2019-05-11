@@ -1,0 +1,57 @@
+@(myList:List[Cows])
+<html>
+    <head>
+        <title>
+            listGrowth.
+        </title>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+
+                <ol class="breadcrumb">
+                    <li><a href="/">หน้าหลัก</a></li>
+                    <li class="active">บันทึกการเจริญเติบโต</li>
+
+                </ol>
+                <h1>บันทึกการเจริญเติบโต</h1>
+                <p style="color: red;">
+                **บันทึกการเจริญเติบโต / อัพเดทสถาะโค เพื่อติดตามการเจริญเติบโต</p>
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-6">
+                        </div>
+                    </div>
+
+
+                    <table class="table table-bordered">
+                        <tr class="bg-light">
+                            <th>โปรไฟล์</th>
+                            <th>รหัสโคขุน</th>
+                            <th>บันทึกการเจริญเต้บโต</th>
+                        </tr>
+                        @for(cow<-myList){
+                            <tr>
+                                <td>
+                                    <img src="/assets/images/Piccow/@cow.getPicture" class="img-thumbnail" width="40px" height="auto">
+                                </td>
+                                <td>
+
+                                @cow.getCow_id
+
+
+                                </td>
+                                <td style="width: 100px;">
+                                    <a href="/editstutas/@cow.getCow_id">Growth.</a>
+
+                                </td>
+                            </tr> }
+                    </table>
+
+            </div>
+        </div>
+        </div>
+    </body>
+</html>

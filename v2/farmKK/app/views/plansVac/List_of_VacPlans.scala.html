@@ -1,0 +1,33 @@
+@(list:List[PlanVacs])
+<html>
+    <head>
+        <title>
+            Planvacs.
+        </title>
+    </head>
+    <body>
+        <table class="table table-hover">
+            <tr>
+
+            </tr>
+            @for(plan<-list){
+                <tr>
+                    <td>@plan.getId</td>
+                    <td>@plan.getVac.getName</td>
+                    <td>
+                        <a href="/addplanvac/@plan.getId">
+                        <button class="btn btn-secondary">
+                            <span class="glyphicon-glyphicon-calendar"> เพิ่มรายชื่อโค</span>
+                        </button>
+                        </a>
+                        <a href="/detailplanvac/@plan.getId" onclick="return confirm('รายละเอียดของแผน')">
+                            <button class="btn btn-primary">
+                                <span class="glyphicon-glyphicon-calendar"> รายละเอียด</span>
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </body>
+</html>

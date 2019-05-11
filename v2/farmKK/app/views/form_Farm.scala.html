@@ -1,0 +1,242 @@
+@(myForm:Form[farm])
+@import helper._;
+<html>
+    <head>
+        <title>
+            ระบบจัดการข้อมูลโคขุน
+        </title>
+        <link href="/assets/images/cow.png" type="image/png" rel="icon">
+        <link href="/assets/stylesheets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+		    <link rel="stylesheet" href="js/jquery.datetimepicker.css">
+        <style type="text/css">
+
+                .header{
+
+                    background-color: #1b6d85;
+                }
+                a{
+                    color: white;
+                }
+                footer{
+                    height: 40px;
+                    background-color: #222222; color: #faf2cc;
+                    padding: 10px;
+
+                }
+                li a{
+                    color: #204d74;
+                }
+                h3{
+                    align-items: center;
+                    margin: 0 auto;
+                }
+
+        </style>
+    </head>
+    <body style="margin: 0 auto;">
+<SCRIPT language="JavaScript"> 
+
+//กรอกเฉพาะตัวเลข
+function isNumberKey(evt){
+    var charCode = (evt.which) ? evt.which : event.keyCode
+ 
+    if(charCode == 46)
+        return true;
+ 
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    return true;
+	//////////////
+	
+
+}
+</SCRIPT>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="row">
+
+                    <div class="col-md-8">
+                        <ol class="breadcrumb">
+                            <li><a href="/">หน้าหลัก</a></li>
+                            <li><a href="/showfarm">ข้อมูลฟาร์มโคขุนหนองแวง</a></li>
+                        </ol>
+                        <h1>ข้อมูลทั่วไปฟาร์มโคขุน</h1>
+                        @helper.form(action = routes.farmController.inputfarm() ,'enctype->"multipart/form-data"){
+                            @inputText(myForm("fram_name"),'_label->"ชื่อฟาร์ม",'size->"60",'maxlength->"50",'class->"form-control")
+                            @textarea(myForm("farm_address"),'_label->"ที่อยู่ฟาร์ม ",'rows->"5" ,'cols->"30" ,'class->"form-control")
+                            @textarea(myForm("farm_details") ,'_label->"รายละเอียด" ,'rows->"10" ,'cols->"30",'class->"form-control")
+                            @inputText(myForm("farm_tel"),'_label->"เบอร์โทรศัพท์ติดต่อ",'size->"60",'maxlength->"10",'minlength->"10",'required->"required",'class->"form-control",'onkeypress->"return isNumberKey(event)" )
+                            @inputFile(myForm("picture"),'_label->"รูปภาพประกอบ",'class->"form-control")
+				
+
+                            <input type="submit" value="บันทึก" class="btn-success">
+                            <input type="reset" value="ลบข้อมูล" class="btn-danger">
+                            }
+                    </div>
+
+                </div>
+
+
+                </div>
+
+            </div>
+
+
+ function getAge()
+ {
+	var day = document.frm.day;
+	var month = document.frm.month;
+	var year = document.frm.year;
+	var d = "";
+	var m = "";
+	var y = "";
+	var nowdt = new Date();
+	var nd = parseInt(nowdt.getDate());
+	var nm = parseInt(nowdt.getMonth());
+	var ny = parseInt(nowdt.getFullYear());
+	var age = document.frm.age;
+	var ageYear = 0;
+	var ageMonth = 0;
+	
+	for(i=0;i<day.options.length;i++)
+	{
+		if(day.options[i].selected){
+			d = day.options[i].value;
+		}	
+	}
+	
+	for(i=0;i<month.options.length;i++)
+	{
+		if(month.options[i].selected){
+			m = month.options[i].value;
+		}	
+	}
+	
+	for(i=0;i<year.options.length;i++)
+	{
+		if(year.options[i].selected){
+			y = year.options[i].value;
+		}	
+	}
+	
+	if(d != "" && m != "" && y != "")
+	{
+		s = new Date(y, parseInt(m)-1, d);
+		d = parseInt(s.getDate()); 
+		m = parseInt(s.getMonth()); 
+		y = parseInt(s.getFullYear());
+		
+		ageYear = ny - y; 
+		if(nm > m)
+		{
+			ageMonth = nm - m;
+		}else if(nm == m){
+			if(nd >= d)
+			{
+				ageMonth = 0;	
+			}else{
+				ageMonth = 11;
+				ageYear = ageYear - 1;
+			}
+		}else{
+			ageMonth = m - nm;
+			ageYear = ageYear - 1;
+		}
+		age.value = ageYear + "ปี " + ageMonth + "เดือน";	
+	}else{
+		age.value = "";
+	}
+	
+ }
+ </script> 
+ <form action="#" method="post" name="frm">
+ 
+ 	วันที่
+ 	<select name="day" id="day" onchange="getAge()">
+ 		<option value="">-</option>
+ 	<?
+ 		for($i=1;$i<=31;$i++){
+			echo "<option value=\"".$i."\">".$i."</option>";
+		}
+ 	?>
+ 	</select>&nbsp;
+ 	เดือน
+ 	<select name="month" id="month" onchange="getAge()">
+ 		<option value="">-</option>
+ 	<?
+ 		for($m=1;$m<=12;$m++){
+			echo "<option value=\"".$m."\">".$m."</option>";
+		}
+ 	?>
+ 	</select>&nbsp;
+ 	ปี
+ 	<select name="year" id="year" onchange="getAge()">
+ 		<option value="">-</option>
+ 	<?
+ 		$thYear = date("Y") + 543;
+ 		for($Y=$thYear; $Y >= 2450; $Y--){
+			echo "<option value=\"".($Y - 543)."\">".$Y."</option>";
+		}
+ 	?>
+ 	</select><br/><br/>
+	คุณอายุ:
+ 	<input type="text" name="age" readonly>
+ 	
+ </form>
+
+$birthdate = '19-09-1997';
+echo 'Born on : '.$birthdate;
+
+function CalAge($birthdate){
+  $today = date('d-m-Y');
+    list($bday,$bmonth,$byear) = explode('-',$birthdate);
+    list($tday,$tmonth,$tyear) = explode('-',$today);
+
+    if($byear < 1970){
+      $yearad = 1970 - $byear;
+      $byear = 1970;
+    }else{
+      $yearad = 0;
+    }
+
+    $mbirth = mktime(0,0,0, $bmonth,$bday,$byear);
+    $mtoday = mktime(0,0,0, $tmonth,$tday,$tyear);
+
+    $mage = ($mtoday - $mbirth);
+    $wyear = (date('Y', $mage)-1970+$yearad);
+    $wmonth = (date('m', $mage)-1);
+    $wday = (date('d', $mage)-1);
+
+    $ystr = ($wyear > 1 ? " Years" : " Year");
+    $mstr = ($wmonth > 1 ? " Months" : " Month");
+    $dstr = ($wday > 1 ? " Days" : " Days");
+
+    if($wyear > 0 && $wmonth > 0 && $wday > 0) {
+      $agestr = $wyear.$ystr." ".$wmonth.$mstr." ".$wday.$dstr;
+     }else if($wyear == 0 && $wmonth == 0 && $wday > 0) {
+       $agestr = $wday.$dstr;
+     }else if($wyear > 0 && $wmonth > 0 && $wday == 0) {
+       $agestr = $wyear.$ystr." ".$wmonth.$mstr;
+     }else if($wyear == 0 && $wmonth > 0 && $wday > 0) {
+       $agestr = $wmonth.$mstr." ".$wday.$dstr;
+     }else if($wyear > 0 && $wmonth == 0 && $wday > 0) {
+       $agestr = $wyear.$ystr." ".$wday.$dstr;
+     }else if($wyear == 0 && $wmonth > 0 && $wday == 0) {
+       $agestr = $wmonth.$mstr;
+     }else {
+       $agestr ="";
+     }
+
+      return $agestr;
+    }
+
+echo '<br>Today your age is : '.Calage($birthdate);
+
+?>
+///
+
+        </div>
+    </body>
+</html>

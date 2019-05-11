@@ -1,0 +1,32 @@
+@(myForm:Form[Cows],myList:List[breeds])
+@import helper._;
+<html>
+    <head>
+        <title>
+            EDIT.
+        </title>
+    </head>
+    <body>
+        <br>
+        <br>
+        <br>
+
+        <h1 align="center">คุณต้องการลบโคขุนออกจากรายการจัดสูตรใช่หรือไม่</h1>
+        @helper.form(action = routes.saveKKFarmController.updateClear() ,'enctype->"multipart/form-data"){
+
+                    <center>
+                        @inputText(myForm("Cow_id"),'_label->"หมายเลขประจำตัวโคขุน",'maxlength->"10",'required->"required",'class->"form-control",'placeholder->"หมายเลขประจำตัว 10 หลักโคขุน")
+
+                        <button type="submit"  class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save"></span> ยืนยัน</button>
+
+                    </center>
+
+
+
+
+                    }
+
+        </h5>
+
+    </body>
+</html>

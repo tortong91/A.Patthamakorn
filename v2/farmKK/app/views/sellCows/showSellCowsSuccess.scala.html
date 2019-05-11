@@ -1,0 +1,49 @@
+@(sellcows:SellCows)
+<html>
+    <head>
+        <title>
+            ข้อมูลขาย
+        </title>
+        <link href="/assets/stylesheets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+
+                            <table class="table table-striped table-bordered">
+                                <tr>
+                                    <th colspan="4">ข้อมูลการขาย รหัสขาย @sellcows.getId</th>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">logo.file</td>
+                                </tr>
+                                <tr>
+                                    <th>วันที่ขาย</th>
+                                    <th>รหัสโคที่ขาย</th>
+                                    <th>ราคาที่ขาย</th>
+                                    <th>ขายให้กับ</th>
+                                </tr>
+                                <tr>
+                                    <td>@sellcows.getDate</td>
+                                    <td>@sellcows.getName @sellcows.getStatus</td>
+                                    <td>@sellcows.getSale_price</td>
+                                    <td>@sellcows.getCoo.getName</td>
+                                </tr>
+
+
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+    </body>
+</html>

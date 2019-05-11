@@ -1,0 +1,94 @@
+@(myForm:Form[PlanVacs],pvac:PlanVacs,cowsList:List[Cows])
+@import helper._;
+@import java.math.BigInteger; var i=0;
+@import helper._;
+<html>
+    <head>
+        <title>
+            บันทึกการให้อาหารโคขุน
+        </title>
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><a href="/">หน้าหลัก</a></li>
+                    <li class="active">บันทึกการให้อาหารโคขุน</li>
+                </ol>
+                <center><h2>บันทึกการฉีดวัคซีน</h2></center>
+
+
+                <br>
+
+                <div    class="row">
+
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        @if(flash.containsKey("data")){
+                            <div class="alert alert-danger">
+                                <strong>เกิดข้อผิดพลาด&nbsp;</strong> @flash.get("data")
+                            </div>
+                        }
+                        @if(flash.containsKey("datacow1")){
+                            <div class="alert alert-danger">
+                                <strong>เกิดข้อผิดพลาด&nbsp;</strong> @flash.get("datacow1")
+                            </div>
+                        }
+                        <table class="table table-hover" >
+                            <tr class="info">
+                                <th>เลือกโคขุน</th>
+                                <th>สายพันธุ์</th>
+                            </tr>
+                            <form action="/inputcowplanvac" method="post">
+                                @*@for(learn <- cowsList) {*@
+                                    @*<tr>*@
+
+                                        @*<td width="">*@
+                                            @*<input type="hidden" name="id[@i]" value="@learn.getCow_id">*@
+                                        @*</td>*@
+                                        @*<td>*@
+
+                                        @*</td>*@
+                                    @*</tr>*@
+
+
+                                    @*<tr>*@
+                                        @*<td>  <input type="checkbox" name="learnId[@i]" value="1"> &nbsp; @learn.getCow_id</td>*@
+
+                                        @*<td> @learn.getBreed.getName<br></td>*@
+                                    @*</tr>*@
+                                @for(learn <- cowsList) {
+                                    <tr>
+
+                                        <td width="">
+                                            <input type="hidden" name="id[@i]" value="@learn.getCow_id">
+                                        </td>
+                                        <td>
+                                            <input type="hidden" name="idc" value="@pvac.getVac.getName">
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td>  <input type="checkbox" name="learnId[@i]" value="1"> &nbsp; @learn.getCow_id</td>
+
+                                        <td> @learn.getBreed.getName<br></td>
+                                    </tr>
+                                    @(i=i+1)
+                                }
+                                <tr>
+                                    <td>
+                                        <input type="submit" value="บันทึก" class="btn btn-success" >
+                                    </td>
+                                </tr>
+
+                            </form>
+                        </table>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

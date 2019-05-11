@@ -1,0 +1,33 @@
+@(listsavefood:List[SaveFoods])
+<html>
+    <head>
+        <title>
+            ข้อมูลให้อาหาร
+        </title>
+    </head>
+    <body>
+        <center>
+            <h2></h2>
+        </center>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>โคขุน</th>
+                    </tr>
+                    @for(s<-listsavefood){
+
+                    <tr>
+                        <td>
+                            @s.getCowdata.getCow_id
+                        </td>
+                    </tr>
+                </table>}
+
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+    </body>
+</html>

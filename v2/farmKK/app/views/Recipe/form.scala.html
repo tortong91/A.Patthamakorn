@@ -1,0 +1,25 @@
+@(form:Form[RecipBasket],listFoods:List[Inputfood])
+@import helper._;
+    @import java.math.BigInteger; var i=0;
+<html>
+    <head>
+        <title>
+            basket.
+        </title>
+    </head>
+    <body>
+        <form action="/inputPost" method="post">
+<input type="text" name="date">
+<input type="text" name="time">
+                        <select name="name">
+                                 @for(food<-listFoods){
+                            <option name="name[@i]" value="@food.getId_ifoods">@food.getId_ifoods</option>
+                                     @(i=i+1)
+                            }
+
+                        </select>
+<input  type="submit">
+            </table>
+        </form>
+    </body>
+</html>

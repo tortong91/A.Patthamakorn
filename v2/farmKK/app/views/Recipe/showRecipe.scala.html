@@ -1,0 +1,31 @@
+@(showList:List[Inputfood],myForm:Form[Inputfood])
+@import helper._;
+<html>
+    <head>
+        <title>
+            จัดสูตรการให้อาหาร
+        </title>
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <tr>
+                        <th>ชื่ออาหาร</th>
+                        <th>จำนวน</th>
+                        <th></th>
+                    </tr>
+                    <tr><th>&nbsp;</th>
+                        <th>  @helper.form(action = routes.RecipController.input(), 'enctype -> "multipart/form-data") {
+                            @inputText(myForm("name_recipe"), '_label -> "ชื่อสูตร", 'maxlength -> "50", 'required -> "required", 'class -> "form-control")</th>
+
+                        }
+                    </div>
+        </div>
+
+
+
+
+
+    </body>
+</html>

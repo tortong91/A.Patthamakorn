@@ -1,0 +1,22 @@
+@(detail:Vacs,mylist:List[Vacs],mylist1:List[Addcow_planvacs])
+<html>
+    <head>
+        <title>
+            โคที่เพิ่ม
+        </title>
+    </head>
+<body>
+    <table class="table">
+        <tr>
+
+                <td>
+
+@for(addcow<-mylist1){
+@addcow.getAddcows.getCow_id
+}
+            </td>
+
+        </tr>
+    </table>
+</body>
+</html>

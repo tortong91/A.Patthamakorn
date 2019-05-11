@@ -1,0 +1,82 @@
+@(myList:List[SaveFoods],myForm:Form[SaveFoods],myListcow:List[Cows],myListRecipe:List[Recipe],myListifood:List[Inputfood])
+@import helper._;
+    @import java.math.BigInteger; var i=0;
+<html>
+    <head>
+        <title>
+            บันทึกการให้อาหารโคขุน
+        </title>
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><a href="/">หน้าหลัก</a></li>
+                    <li class="active">บันทึกการให้อาหารโคขุน</li>
+                </ol>
+                <center><h1>บันทึกการให้สูตรอาหารโคขุน</h1>
+                <p style="color: red;">**กำหนด วางแผน ว่าโคขุนแต่ละตัวนั้นควรกินอาหารสูตรใหน</p>
+                </center>
+
+                        <div    class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                @if(flash.containsKey("Flashfood")){
+                                    <div class="alert alert-danger">
+                                        <strong>เกิดข้อผิดพลาด&nbsp;</strong> @flash.get("Flashfood")
+                                    </div>
+                                }
+                                @if(flash.containsKey("datacow1")){
+                                    <div class="alert alert-danger">
+                                        <strong>เกิดข้อผิดพลาด&nbsp;</strong> @flash.get("datacow1")
+                                    </div>
+                                }
+
+                                <table class="table table-bordered" width="500">
+                                    <tr class="info">
+                                        <th width="">ชื่อสูตร</th>
+                                        <th>วันที่จัดสูตร</th>
+
+                                        <th>ช่วงเวลาใช้สูตร</th>
+                                        <th>เพิ่มโคขุน</th>
+                                    </tr>
+                                    @for(s<-myListRecipe){
+                                        <tr>
+                                            <td>@s.getNameRecip</td>
+                                            <td>@s.getDateRecipe</td>
+
+                                            <td>@s.getDateTimeRecipe</td>
+                                            <td>
+
+    <a href="/addcowfoods/@s.getNameRecip">
+        <button class="btn btn-success">
+            เพิ่มโคที่ใช้สูตร
+        </button>
+    </a>
+
+
+                                                <a href="/detailssavefood/@s.getNameRecip">
+                                                    <button class="btn btn-light">
+                                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                                    </button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+
+                            </div>
+                            <div class="col-md-1"></div>
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+    </body>
+</html>

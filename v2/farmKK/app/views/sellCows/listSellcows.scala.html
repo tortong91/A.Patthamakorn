@@ -1,0 +1,87 @@
+@(sellcow:List[SellCows],listcow:List[Cows])
+<html>
+    <head>
+        <title>
+            Sellcows.
+        </title>
+    </head>
+    <body>
+
+            <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-8">
+
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <span class="glyphicon glyphicon-plus"></span>
+
+
+                            <table class="table table-bordered table-hover">
+                                <tr>
+                                    <th>
+                    ชื่อโคขุน
+                                    </th>
+                                    <th>
+                    สถานะ
+                                    </th>
+                                    <th>
+                    ขาย
+                                    </th>
+                                </tr>
+                                @for(sell<-listcow){
+                                    <tr>
+                                        <td>
+                                        @sell.getCow_id
+                                        </td>
+                                        <td>
+                                            @sell.getStatus
+                                        </td>
+                                        <td>
+                                            <a href="/editsellcow/@sell.getCow_id">
+                                                <span class="glyphicon glyphicon-shopping-cart"> ขาย</span>
+                                            </a>
+
+                                        </td>
+                                    </tr>
+                                }
+                                </table>
+                        </div>
+                    </div>
+
+                </div>
+                    <div class="col-md-4">
+
+
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <span class="glyphicon glyphicon-plus"></span>  รายการขาย
+                        </div>
+                        <div class="panel-body">
+                            @for(sell<-sellcow){
+
+                                <a href="detailSellcows/@sell.getId">@sell.getName</a>   @sell.getDate<br>
+
+                            }
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+
+                </div>
+            </div>
+
+                <!--//-->
+
+
+
+
+
+
+
+    </body>
+</html>

@@ -1,0 +1,131 @@
+@(myList:List[PlanVacs],myForm:Form[PlanVacs],MyListVac:List[Vacs],myListCow:List[Cows])
+    @import helper._;
+    <html>
+        <head>
+            <title>
+                แผนการฉีดวัคซีน
+            </title>
+
+        </head>
+        <body style="margin: 0 auto;" >
+            <div class="container-fluid">
+                    <!---->
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <ol class="breadcrumb">
+                            <li><a href="/">หน้าหลัก</a></li>
+                            <li class="active">แผนการฉีดวัคซีน</li>
+                        </ol>
+                        <h1>แผนการฉีดวัคซีน</h1>
+                        <p style="color: red;">**กำหนด วางแผนการฉีดวัคซีน</p>
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+
+                                @if(flash.containsKey("error")){
+                                    <div class="alert alert-danger">
+                                        <strong>เกิดข้อผิดพลาด</strong> @flash.get("error")
+                                    </div>
+                                }
+
+                                @helper.form(action = routes.vacController.inputPlan() ,'enctype->"multipart/form-data"){
+                                   <div class="row">
+
+
+                                       <div class="col-md-6">
+                                            @select(myForm("vac.id"),options=MyListVac.map(fac=>fac.getId->fac.getName),'_label->"วัคซีนฉีดรอบแรก",'class->"form-control")
+                                        </div>
+
+
+                                                <div class="col-md-3">
+
+                                                @inputDate(myForm("pdate"),'_label->"กำหนดวันฉีดวัคซีน รอบแรก" ,'class->"form-control")
+                                                </div>
+                                                <div class="col-md-3">
+                                                @inputDate(myForm("pdate1"),'_label->"กำหนดวันฉีดวัคซีน รอบแรก" ,'class->"form-control")
+                                                </div>
+
+
+
+
+                                       </div>
+
+<center>
+                                            <button type="submit"  class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save"></span> จัดแผนการฉีดวัคซีน</button>
+</center>
+
+
+                                   </div>
+
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <!--\\-->
+                <div class="row">
+                    <div class="col-md-12">
+                        @if(flash.containsKey("datacow")){
+                            <div class="alert alert-danger">
+                                <strong>เกิดข้อผิดพลาด</strong>@flash.get("datacow").
+                            </div>
+                        }
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                            </div>
+                            <div class="panel-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+
+
+                                            <th>วัคซีนที่ใช้</th>
+                                            <th>กำหนดฉีด</th>
+
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @for(s <- myList) {
+                                        <tr>
+
+
+                                            <td>
+                                                <u>@s.getVac.getName</u><br>
+
+                                            </td>
+                                            <td><font color="red">
+                                                ครั้งแรก @s.getPdate<br>
+                                                ครั้งสอง @s.getPdate1<br>
+                                                </font></td>
+                                            <td>@s.getPvacdate</td>
+                                            <td>
+
+
+
+                                                <a href="/deleteplanvac/@s.getId" onclick="return confirm('Delete')">
+                                                    <button class="btn btn-danger">
+                                                        <span class="glyphicon glyphicon-trash"></span>
+                                                    </button>
+                                                </a>
+
+
+                                            </td>
+                                        </tr>
+                                    }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </body>
+
+    </html>
+

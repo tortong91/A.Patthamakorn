@@ -1,0 +1,56 @@
+@(recip:Recipe,savefoods:List[SaveFoods])
+<html>
+    <head>
+        <title>
+            ข้อมูลให้อาหาร
+        </title>
+    </head>
+    <link href="/assets/stylesheets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <body>
+        <div class="container">
+
+            <div class="row">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3>
+                            รายชื่อโคขุนที่ถูกจัดลงไปในสูตร
+                        </h3>
+                        <h4>
+                          ชื่อสูตร : @recip.getNameRecip
+                        </h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-12">
+
+<table class="table table-striped table-bordered">
+<tr>
+    <th>โปรไฟล์</th>
+    <th>รหัสโคขุน</th>
+</tr>
+    @for(cow<-savefoods) {
+     <tr>
+         <td width="100px"><img src="/assets/images/Piccow/@cow.getCowdata.getPicture" class="img-thumbnail" width="100px" height="auto" ></td>
+         <td>
+         <p><h3>รหัส :@cow.getCowdata.getCow_id</h3></p>
+         <p>สายพันธุ์ :@cow.getCowdata.getBreed.getName</p>
+         <p>เพศ :@cow.getCowdata.getSex</p>
+         <p>สถานะ :@cow.getCowdata.getStatus</p>
+         <p><a href="/delectClear/@cow.getId" class="btn btn-danger"> ลบ</a> </p>
+         </td>
+     </tr>
+    }
+</table>
+                </div>
+            </div>
+
+
+        </div>
+
+<a href="/savefoods" class="btn btn-light"> กลับ</a>
+
+
+
+            </div>
+        </div>
+    </body>
+</html>

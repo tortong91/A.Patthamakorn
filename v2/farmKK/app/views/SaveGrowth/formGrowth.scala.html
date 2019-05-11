@@ -1,0 +1,85 @@
+@(myForm:Form[Cows],cow:Cows,myList:List[Cows],bList:List[breeds])
+@import helper._;
+<html>
+    <head>
+        <title>
+            Growth.
+        </title>
+
+    </head>
+
+        <div class="container">
+            <div class="jumbotron">
+            <h1>บันทึกการเจริญเติบโต</h1>
+            <p>
+                บันทึกการเจริญเติบโต เป็นการอัพเดทสถานะของโคขุนว่าอยู่ในสถานะแบบใหนระหว่างที่เลี้ยงโคขุนว่าระหว่างที่ขุนโคมีอาการอะไรเกิดขึ้นบ้างกับตัวโค
+            </p>
+        </div>
+            <p>
+                <img src="/assets/images/Piccow/@cow.getPicture/" class="media-object" style="width:200px">
+        <p>โคขุน : @cow.getCow_id</p>
+            <p>เพศ : @cow.getSex</p>
+            <p>สถานะ : @cow.getStatus</p>
+
+            </p>
+            @helper.form(action = routes.saveKKFarmController.inputGrowth(), 'enctype -> "multipart/form-data") {
+
+<div class="row">
+<div class="col-md-12">
+
+
+    <table class="table">
+        <tr>
+            <th>&nbsp;</th>
+            <th>
+
+                <p>
+                    @inputText(myForm("weight"),'_label->"น้ำหนัก(กิโลกรัม)",'size->"10",'maxlength->"3",'required->"required",'class->"form-control" ,'placeholder->"น้ำหนัก (กิโลกรัม)")
+                    @inputText(myForm("height"),'_label->"ส่วนสูง(เซนติเมตร)",'size->"10",'maxlength->"3",'class->"form-control",'placeholder->"ส่วนสูง (เซนติเมตร)")
+                    @inputText(myForm("age"),'_label->"อายุ(ปี)",'size->"10",'maxlength->"3",'required->"required",'class->"form-control",'placeholder->"อายุ")
+                    @inputRadioGroup(myForm("status"),options = Seq("ป่วย"->"ป่วย","ป่วยระดับปานกลาง"->"ป่วยระดับปานกลาง","ป่วยระดับโคม่า"->"ป่วยระดับโคม่า"),'_label -> "")
+                @inputRadioGroup(myForm("status"),options = Seq("บาดเจ็บ"->"บาดเจ็บ","บาดเจ็บขั้นสาหัส"->"บาดเจ็บขั้นสาหัส"),'_label -> "")
+                @inputRadioGroup(myForm("status"),options = Seq("พร้อมขาย"->"พร้อมขาย"),'_label -> "")
+                @inputRadioGroup(myForm("status"),options = Seq("ตาย"->"ตาย"),'_label -> "")
+                </p>
+                <p>
+                    <input type="submit" value="ยืนยัน" class="btn-primary">
+                </p>
+
+            </th>
+            <th>&nbsp;</th>
+        </tr>
+
+    </table>
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+            }
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+    </div>
+    </body>
+</html>
